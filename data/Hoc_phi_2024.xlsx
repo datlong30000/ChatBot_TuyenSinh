@@ -1,0 +1,78 @@
+﻿TT,Ngành,Thời gian dự kiến,Học phí TB/năm theo ngành
+1,Giáo dục Mầm non,3.5,43000000
+2,Thanh nhạc,3.0,48000000
+3,Piano,3.0,48000000
+4,"Diễn viên kịch, điện ảnh - truyền hình",3.5,41000000
+5,Thiết kế đồ họa,4.0,37000000
+6,Thiết kế thời trang,3.5,38000000
+7,Ngôn ngữ Anh,3.5,56000000
+8,Ngôn ngữ Trung Quốc,3.5,42000000
+9,Quan hệ quốc tế,3.0,36000000
+10,Tâm lý học,3.0,42000000
+11,Đông phương học,3.5,42000000
+12,Việt Nam học,3.0,26000000
+13,Truyền thông đa phương tiện,3.5,45000000
+14,Quan hệ công chúng,3.0,44000000
+15,Quản trị kinh doanh,3.0,53000000
+16,Quản trị kinh doanh (Cử nhân Quản trị kinh doanh thực phẩm),3.0,48000000
+17,Marketing,3.0,53000000
+18,Kinh doanh quốc tế,3.0,50000000
+19,Thương mại điện tử,3.5,44000000
+20,Tài chính - Ngân hàng,3.0,53000000
+21,Kế toán,3.0,54000000
+22,Quản trị nhân lực,3.0,50000000
+23,Luật kinh tế,4.0,41000000
+24,Công nghệ sinh học,4.0,37000000
+25,Mạng máy tính và truyền thông dữ liệu (cử nhân),3.0,35000000
+26,Mạng máy tính và truyền thông dữ liệu (kỹ sư),3.5,34000000
+27,Kỹ thuật phần mềm (cử nhân),3.0,44000000
+28,Kỹ thuật phần mềm (kỹ sư),3.5,43000000
+29,Công nghệ thông tin (cử nhân),3.0,44000000
+30,Công nghệ thông tin (kỹ sư),3.5,43000000
+31,Công nghệ thông tin (Cử nhân Công nghệ thông tin và dữ liệu tài nguyên môi trường),3.5,38000000
+32,Công nghệ kỹ thuật cơ điện tử (kỹ sư) Chuyên ngành: cơ điện tử,4.0,38000000
+33,Công nghệ kỹ thuật cơ điện tử (kỹ sư) Chuyên ngành: Rbt và Trí tuệ nhân tạo,4.0,38000000
+34,Công nghệ kỹ thuật cơ điện tử (kỹ sư) Chuyên ngành: Chế tạo máy số,4.0,38000000
+35,Công nghệ kỹ thuật cơ điện tử (kỹ sư) Chuyên ngành: Cơ khí tự động,4.0,38000000
+36,Công nghệ kỹ thuật cơ điện tử (cử nhân),3.5,35000000
+37,Công nghệ kỹ thuật ô tô (kỹ sư),4.0,38000000
+38,Công nghệ kỹ thuật ô tô (kỹ sư tiên tiến),4.0,43000000
+39,Công nghệ kỹ thuật ô tô (cử nhân),3.5,36000000
+40,"Công nghệ kỹ thuật điện, điện tử (kỹ sư)",4.0,38000000
+41,"Công nghệ kỹ thuật điện, điện tử (cử nhân)",3.5,35000000
+42,Công nghệ kỹ thuật hóa học (Kỹ sư),4.0,37000000
+43,Công nghệ kỹ thuật hóa học (Cử nhân),3.5,37000000
+44,Logistics và quản lý chuỗi cung ứng,3.5,45000000
+45,Kỹ thuật hệ thống công nghiệp (kỹ sư),4.0,23000000
+46,Kỹ thuật hệ thống công nghiệp (cử nhân),3.5,21000000
+47,Kỹ thuật y sinh,4.0,34000000
+48,Vật lý y khoa,4.0,35000000
+49,Công nghệ thực phẩm (Kỹ sư),4.0,37000000
+50,Công nghệ thực phẩm (Cử nhân),3.5,38000000
+51,Kiến trúc,4.5,35000000
+52,Thiết kế nội thất,4.0,35000000
+53,Kỹ thuật xây dựng,4.0,38000000
+54,Kỹ thuật xây dựng công trình giao thông (Chuyên ngành: Kỹ thuật giao thông đô thị và quản lý an toàn),4.0,33000000
+55,Kỹ thuật xây dựng công trình giao thông (Chuyên ngành: Kỹ thuật công trình giao thông đô thị),4.0,33000000
+56,Thú y,4.5,43000000
+57,Y khoa,6.0,152000000
+58,Y học dự phòng,6.0,51000000
+59,Y học Cổ Truyền,6.0,54000000
+60,Dược học,5.0,52000000
+61,Điều dưỡng,4.0,45000000
+62,Răng - Hàm - Mặt,6.0,183000000
+63,Kỹ thuật xét nghiệm y học,4.0,45000000
+64,Kỹ thuật Phục hồi chức năng,4.0,51000000
+65,Quản lý bệnh viện,3.0,43000000
+66,Hóa dược,3.5,36000000
+67,Du lịch,3.0,45000000
+68,Quản trị khách sạn,3.0,45000000
+69,Quản trị nhà hàng và dịch vụ ăn uống,3.0,43000000
+70,Quản lý tài nguyên và môi trường,3.5,37000000
+71,Quản trị kinh doanh,3.5,61000000
+72,Kế toán,3.5,61000000
+73,Luật kinh tế,3.5,61000000
+74,Công nghệ thông tin (kỹ sư),4.0,53000000
+75,Công nghệ kỹ thuật ô tô (kỹ sư),4.0,53000000
+76,Logistics và quản lý chuỗi cung ứng,3.5,61000000
+77,Quản trị khách sạn,3.5,61000000
