@@ -2,7 +2,7 @@
 
 ## Installation
 
-Install the LangChain CLI if you haven't yet
+Yêu cầu thư viện LangChain CLI
 
 ```bash
 pip install -U langchain-cli
