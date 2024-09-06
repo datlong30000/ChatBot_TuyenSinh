@@ -8,6 +8,16 @@ Yêu cầu thư viện LangChain CLI
 pip install -U langchain-cli
 ```
 
+Ngoài ra hãy khởi tạo biến môi trường để có thể sử dụng API của các mô hình LLM
+
+
+```bash
+OPENAI_API_KEY = <API-KEY-OPENAI>
+LANGCHAIN_API_KEY = <API-KEY-LANGSMITH> #Không bắt buộc
+LANGCHAIN_TRACING_V2 = true #Không bắt buộc
+LANGCHAIN_ENDPOINT = https://api.smith.langchain.com #Không bắt buộc
+```
+
 ## Adding packages
 
 ```bash
