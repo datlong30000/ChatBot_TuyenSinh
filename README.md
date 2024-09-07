@@ -2,20 +2,10 @@
 
 ## Installation
 
-Yêu cầu thư viện LangChain CLI
+Install the LangChain CLI if you haven't yet
 
 ```bash
 pip install -U langchain-cli
-```
-
-Ngoài ra hãy khởi tạo biến môi trường để có thể sử dụng API của các mô hình LLM
-
-
-```bash
-OPENAI_API_KEY = <API-KEY-OPENAI>
-LANGCHAIN_API_KEY = <API-KEY-LANGSMITH> #Không bắt buộc
-LANGCHAIN_TRACING_V2 = true #Không bắt buộc
-LANGCHAIN_ENDPOINT = https://api.smith.langchain.com #Không bắt buộc
 ```
 
 ## Adding packages
@@ -40,6 +30,17 @@ Note: you remove packages by their api path
 langchain app remove my/custom/path/rag
 ```
 
+## Setup LangSmith (Optional)
+LangSmith will help us trace, monitor and debug LangChain applications. 
+You can sign up for LangSmith [here](https://smith.langchain.com/). 
+If you don't have access, you can skip this section
+
+
+```shell
+export LANGCHAIN_TRACING_V2=true
+export LANGCHAIN_API_KEY=<your-api-key>
+export LANGCHAIN_PROJECT=<your-project>  # if not specified, defaults to "default"
+```
 
 ## Launch LangServe
 
