@@ -1,0 +1,124 @@
+﻿STT,"Tên trường, Ngành học",Mã trường,Mã Ngành,Tổ hợp,Chỉ tiêu 2024
+,TRƯỜNG ĐẠI HỌC NGUYỄN TẤT THÀNH,NTT,,,8500
+1.0,Y khoa,NTT,7720101,"B00: Toán, Hóa học, Sinh học",630
+2.0,Y học dự phòng,NTT,7720110,,70
+3.0,Răng - Hàm - Mặt,NTT,7720501,"
+A00: Toán, Vật lý, Hóa học
+B00: Toán, Hóa học, Sinh học
+D07: Toán, Hóa học, Tiếng Anh
+A00: Toán, Vật lý, Hóa học
+",6 năm
+4.0,Y học cổ truyền,NTT,7720115,,30
+5.0,Dược học,NTT,7720201,,780
+6.0,Hóa Dược,NTT,7720203,,
+7.0,Điều dưỡng,NTT,7720301,,450
+8.0,Kỹ thuật Y sinh,NTT,7520212,"A01: toán, Vật lý, Tiếng Anh
+B00: toán, Hóa học, Sinh học
+A00: toán, Vật lý, Hóa học
+A02: toán, vật lý Sinh Học",30
+9.0,Vật lý y khoa,NTT,7520403,,20
+10.0,Thú y,NTT,7640101,"A00: Toán, Vật lý, Hóa học
+B00: Toán, Hóa học, Sinh học
+D07: Toán, Hóa học, Tiếng Anh  
+D08: Toán, Sinh học, Tiếng Anh
+",
+11.0,Công nghệ sinh học,NTT,7420201,,40
+12.0,Kỹ thuật xét nghiệm y học,NTT,7720601,,270
+13.0,Công nghệ kỹ thuật hóa học,NTT,7510401,"A00: Toán, Vật lý, Hóa học
+D07: Toán, Hóa học, Tiếng Anh
+D90: Toán, Kha học tự nhiên, Tiếng Anh
+A01: Toán, Vật lý, Tiếng Anh
+B00: Toán, Hóa học, Sinh học
+",30
+14.0,Công nghệ thực phẩm,NTT,7540101,,70
+15.0,Quản lý tài nguyên và môi,NTT,7850101,,30
+16.0,Quan hệ công chúng,NTT,7320108,"A01: Toán, Vật lý, Tiếng Anh 
+C00: Ngữ văn, Lịch sử, Địa lý 
+D01: Toán, Ngữ văn, Tiếng Anh 
+D14: Ngữ văn, Lịch sử, Tiếng Anh ",150
+17.0,Tâm lý học,NTT,7310401,"B00: Toán, Hóa học, Sinh học 
+C00: Ngữ văn, Lịch sử, Địa lý 
+D01: Toán, Ngữ văn, Tiếng Anh 
+D14: Ngữ văn, Lịch sử, Tiếng Anh ",100
+18.0,Kỹ thuật xây dựng,NTT,7580201,"A00: Toán, Vật lý, Hóa học 
+A01: Toán, Vật lý, Tiếng Anh 
+D01: Toán, Ngữ văn, Tiếng Anh 
+D07: Toán, Hóa học, Tiếng Anh",90
+19.0,"Công nghệ kỹ thuật điện,",NTT,7510301,,70
+20.0,Công nghệ kỹ thuật cơ điện tử,NTT,7510203,,80
+21.0,Công nghệ kỹ thuật ô tô,NTT,7510205,,780
+22.0,Công nghệ thông tin,NTT,7480201,,700
+23.0,Kỹ thuật phần mềm,NTT,7480103,,85
+24.0,Mạng máy tính và truyền thông dữ liệu,NTT,7480102,,20
+25.0,Kỹ thuật hệ thống công nghiệp,NTT,7520118,,26
+26.0,Kế Toán,NTT,7340301,,240
+27.0,Tài chính – ngân hàng,NTT,7340201,,280
+28.0,Quản trị kinh doanh,NTT,7340101,,460
+29.0,Quản trị nhân lực,NTT,7340404,,100
+30.0,Logistics và quản lý chuỗi cung ứng,NTT,7510605,,340
+31.0,Thương mại điện tử,NTT,7340122,,160
+32.0,Marketing,NTT,7340115,,450
+33.0,Kinh doanh quốc tế,NTT,7340120,,90
+34.0,Quan hệ quốc tế,NTT,7310206,"A01: Toán – Lý – Tiếng Anh 
+D01: Toán – Ngữ văn – Tiếng Anh 
+D14: Ngữ văn – Lịch sử – Tiếng Anh  
+D15: Ngữ văn – Địa lí – Tiếng Anh ",30
+35.0,Truyền thông đa phương tiện,NTT,7320104,"A01: Toán, Vật lý, Tiếng Anh 
+C00: Ngữ văn, Lịch sử, Địa lý 
+D01: Toán, Ngữ văn, Tiếng Anh 
+D15: Ngữ văn, Địa lý, Tiếng Anh",260
+36.0,Luật kinh tế,NTT,7380107,"A00: Toán, Vật lý, Hóa học 
+A01: Toán, Vật lý, Tiếng Anh 
+C00: Ngữ văn, Lịch sử, Địa lý 
+D01: Toán, Ngữ văn, Tiếng Anh ",300
+37.0,Quản trị khách sạn,NTT,7810201,"C00: Ngữ văn – Lịch sử - Địa lí 
+D01: Toán – Ngữ văn – Tiếng Anh 
+D14: Ngữ văn – Lịch sử – Tiếng Anh  
+D15: Ngữ văn – Địa lí – Tiếng Anh",150
+38.0,Quản trị nhà hàng và dịch vụ ăn uống,NTT,7810202,,80
+39.0,Ngôn ngữ Anh,NTT,7220201,"C00: Ngữ văn, Lịch Sử, Địa lý 
+D01: Toán, Ngữ văn, Ngoại ngữ 
+ (Tiếng Anh/Tiếng Trung) 
+D14: Ngữ văn, Lịch sử, Tiếng Anh 
+D15: Ngữ văn, Địa lý, Tiếng Anh",200
+40.0,Du lịch,NTT,7810101,,80
+41.0,Việt Nam học,NTT,7310630,,25
+42.0,Ngôn ngữ Trung Quốc,NTT,7220204,,230
+43.0,Đông Phương học,NTT,7310608,,60
+44.0,Thiết kế đồ họa,NTT,7210403,"D01: Toán, Ngữ văn, Tiếng Anh 
+V01: Toán, Ngữ văn, Vẽ tĩnh vật chì 
+H00: Ngữ văn, Vẽ tĩnh vật chì, Vẽ trang trí màu 
+H01: Toán, Ngữ văn, Vẽ trang trí màu ",125
+45.0,Thiết kế nội thất,NTT,7580108,,24
+46.0,Kiến trúc,NTT,7580101,,40
+47.0,Thanh nhạc,NTT,7210205,"N00: Ngữ văn, Kiến thức tổng hợp về âm nhạc, Năng khiếu(Hát)",40
+48.0,Piano,NTT,7210208,"N00: Ngữ văn, Kiến thức tổng hợp về 
+âm nhạc, Năng khiếu (Đàn piano) ",30
+49.0,"Diễn viên kịch, điện ảnh-truyền hình",NTT,7210234,"N05: Ngữ văn, Kiến thức chuyên 
+ngành (vấn đáp), Năng khiếu (Trình 
+bày tiểu phẩm) ",20
+50.0,Giáo dục mầm non,NTT,7140201,"M00: Văn, Toán, Năng khiếu (Đọc diễn 
+cảm - Hát).  M01: Văn, Năng khiếu Giáo dục Mầm 
+non 1 (Môn Kể chuyện – Đọc diễn cảm), 
+Năng khiếu Giáo dục Mầm non 2 (Môn 
+Hát – Nhạc)",20
+51.0,Quản lý bệnh viện,NTT,7720802,"B00: Toán, Hóa, Sinh  
+B03: Toán, Sinh, Ngữ văn 
+C00: Ngữ văn, Lịch sử, Địa lý 
+D01: Toán, Ngữ văn, Tiếng Anh ",30
+52.0,Kỹ thuật phục hồi chức năng,NTT,7720603,"A00: Toán, Vật lý, Hóa học 
+A01: Toán, Vật lý, Tiếng Anh 
+B00: Toán, Hoá học, Sinh học 
+D07: Toán, Hoá học, Tiếng Anh ",50
+53.0,Kỹ thuật xây dựng công trình giao thông,NTT,7580205,"A01: Toán, Vật lý, Tiếng Anh",35
+54.0,Thiết kế thời trang,NTT,7210404,"A00: Toán – Vật lý – Hóa học 
+A01: Toán – Vật lý – Tiếng Anh 
+D01: Toán, Ngữ văn, Tiếng Anh 
+D14: Ngữ văn, Lịch sử, tiếng Anh",
+55.0,Công nghệ thông tin (Công nghệ và Đổi mới sáng tạo),NTT,7480201_CNST,"A00: Toán, Vật lý, Hóa học 
+A01: Toán, Vật lý, Tiếng Anh 
+D01: Toán, Ngữ văn, Tiếng Anh 
+D07: Toán, Hóa học, Tiếng Anh","3,5 năm"
+56.0,Quản trị kinh doanh (Quản trị doanh nghiệp và công nghệ),NTT,7340101_DNCN,,"3,5 năm"
+57.0,Quản trị kinh doanh (Kinh doanh sáng tạo),NTT,7340101_KDST,,"3,5 năm"
+58.0,Marketing (Marketing số và truyền thông xã hội),NTT,7340115_DM,,"3,5 năm"

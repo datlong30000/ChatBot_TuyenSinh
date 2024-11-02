@@ -1,0 +1,7 @@
+.vscode
+__pycache__
+chat_histories
+data
+test.py
+test2.py
+data_verify.py

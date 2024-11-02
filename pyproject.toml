@@ -1,0 +1,27 @@
+[tool.poetry]
+package-mode = false
+name = "ai-lord"
+version = "0.1.0"
+description = "Admission chatbot using LangChain and LangServe"
+authors = ["datlong30000"]
+license = "BSD-3-Clause"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.114.0"
+langchain-cli = "^0.0.31"
+python-dotenv = "^1.0.1"
+langchain-community = "^0.3.0"
+langserve = {extras = ["all"], version = "^0.3.0"}
+langchain = "^0.3.0"
+langchain-core = "^0.3.1"
+tqdm = "^4.66.5"
+langchain-openai = "^0.2.0"
+faiss-cpu = "^1.8.0.post1"
+matplotlib = "^3.9.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
