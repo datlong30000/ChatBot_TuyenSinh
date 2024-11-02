@@ -262,4 +262,4 @@ def xin_nghi_tools(query: str) -> str:
         return f"Không thành công: Lỗi cơ sở dữ liệu - {str(e)}"
     except Exception as e:
         return f"Không thành công: Đã xảy ra lỗi - {str(e)}"
-â
+
