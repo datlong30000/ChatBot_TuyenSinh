@@ -230,7 +230,7 @@ def xin_nghi_tools(query: str) -> str:
             return "Không thành công: Thiếu thông tin cần thiết."
 
         # Kết nối tới cơ sở dữ liệu SQLite
-        conn = sqlite3.connect('C:/Users/AD/my_database.db')
+        conn = sqlite3.connect('database/my_database.db')
         cursor = conn.cursor()
 
         # Kiểm tra xem MSSV có tồn tại trong bảng students hay không

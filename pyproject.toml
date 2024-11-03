@@ -20,6 +20,7 @@ tqdm = "^4.66.5"
 langchain-openai = "^0.2.0"
 faiss-cpu = "^1.8.0.post1"
 matplotlib = "^3.9.2"
+langchain-anthropic = "^0.2.4"
 
 
 [build-system]
