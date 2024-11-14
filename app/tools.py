@@ -1,16 +1,22 @@
 from langchain_community.tools import TavilySearchResults
 from langchain_community.vectorstores import FAISS
-from langchain_openai import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings, AzureOpenAIEmbeddings
 from langchain.agents import tool
 from datetime import datetime
 from dotenv import load_dotenv
+
 import sqlite3
 import json
 import sqlite3
 
 load_dotenv()
 
-embeddings = OpenAIEmbeddings()
+# embeddings = OpenAIEmbeddings()
+embeddings = AzureOpenAIEmbeddings(
+    model="text-embedding-ada-002",
+    api_version="2023-05-15",
+    azure_endpoint="https://longleazureopenai.openai.azure.com/"
+)
 
 index_names = {
     "de_an": "vector_database/faiss_index_de-an-tuyen-sinh-dhntt-2024-v02-web",

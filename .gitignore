@@ -2,3 +2,5 @@
 .vscode/
 *.pyc
 *.json
+database/
+chat_histories/

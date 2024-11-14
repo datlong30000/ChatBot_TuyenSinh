@@ -1,7 +1,7 @@
 from langchain_community.document_loaders import TextLoader
 from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_openai import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings, AzureOpenAIEmbeddings
 from pathlib import Path
 from typing import List
 from tqdm import tqdm
@@ -18,7 +18,14 @@ def create_and_save_faiss_index(documents: List, name: str, embeddings, output_d
 
 def process_directory(base_path: Path, output_dir: Path):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=125, length_function=len)
-    embeddings = OpenAIEmbeddings()
+    # embeddings = OpenAIEmbeddings()
+    # embeddings = OpenAIEmbeddings()
+    embeddings = AzureOpenAIEmbeddings(
+        model="text-embedding-ada-002",
+        api_version="2023-05-15",
+        azure_endpoint="https://longleazureopenai.openai.azure.com/"
+    )
+
 
     output_dir.mkdir(parents=True, exist_ok=True)
 

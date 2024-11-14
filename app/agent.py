@@ -14,23 +14,28 @@ from pydantic import BaseModel, Field
 from typing import Any
 from dotenv import load_dotenv
 from tools import *
-
+from langchain_openai import AzureChatOpenAI
 # Áp dụng các biến môi trường
 load_dotenv()
 
-# # Lựa chọn mô hình LLM
+# # # Lựa chọn mô hình LLM
 # llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.1, streaming=True)
 
-llm = ChatAnthropic(
-    model_name="claude-3-5-sonnet-latest",
-    temperature=0.5,
-    max_tokens_to_sample=2000,
-    timeout=None,
-    max_retries=7,
-    streaming=False,
-    verbose=False,
-    # other params...
+llm = AzureChatOpenAI(openai_api_type="azure",
+    azure_endpoint = 'https://longleazureopenai.openai.azure.com/',
+    openai_api_version = "2024-08-01-preview",
+    deployment_name = 'gpt-4o-mini',
 )
+# llm = ChatAnthropic(
+#     model_name="claude-3-5-haiku-20241022",
+#     temperature=0.5,
+#     max_tokens_to_sample=5000,
+#     timeout=None,
+#     max_retries=7,
+#     streaming=False,
+#     verbose=False,
+#     # other params...
+# )
 
 # Khởi tạo tool
 tools = [tavily_search_web, de_an_tools, diem_trung_tuyen_tools, hoc_phi_nganh_tools, nang_khieu_tools,
@@ -38,9 +43,9 @@ tools = [tavily_search_web, de_an_tools, diem_trung_tuyen_tools, hoc_phi_nganh_t
            tinh_hinh_viec_lam_tools, thoi_gian_het_han_tools,thoi_gian_hien_tai, xin_nghi_tools]
 
 
-# # Kết hợp LLM với tools
-# llm_with_tools = llm.bind(tools=[convert_to_openai_tool(tool) for tool in tools])
-llm_with_tools = llm.bind(tools=[convert_to_anthropic_tool(tool) for tool in tools])
+# Kết hợp LLM với tools
+llm_with_tools = llm.bind(tools=[convert_to_openai_tool(tool) for tool in tools])
+# llm_with_tools = llm.bind(tools=[convert_to_anthropic_tool(tool) for tool in tools])
 
 # Tạo Agent Executor
 agent = (
