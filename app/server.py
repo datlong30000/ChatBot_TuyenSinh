@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from langserve import add_routes
-from agent import chain_with_history_and_agent
+from app.agent import chain_with_history_and_agent
 
 # Constants
 APP_TITLE = "LangChain Server"
