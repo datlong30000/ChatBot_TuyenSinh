@@ -193,7 +193,7 @@ def thoi_gian_hien_tai(time: str) -> dict:
         an answer of time.
     """
     current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    return ["thời gian hiện tại", current_datetime]
+    return [f"thời gian hiện tại theo múi giờ Việt Nam: {current_datetime}"]
 
 @tool
 def thoi_gian_het_han_tools(query: str) -> list:
@@ -252,7 +252,7 @@ def xin_nghi_tools(query: str) -> str:
 
         # Thực hiện truy vấn INSERT vào bảng leave_requests
         cursor.execute(''' 
-            INSERT INTO leave_requests (student_id, start_date, end_date, reason) 
+            INSERT INTO student_leave_request (student_id, start_date, end_date, reason) 
             VALUES (?, ?, ?, ?) 
         ''', (student_id, start_date, end_date, reason))
 
@@ -269,3 +269,221 @@ def xin_nghi_tools(query: str) -> str:
     except Exception as e:
         return f"Không thành công: Đã xảy ra lỗi - {str(e)}"
 
+@tool
+# Tool tạo đơn xin nghỉ mới
+def xin_nghi_tools(query: str) -> str:
+    """
+    Use this tool to help student create a new leave request.
+    
+    Args:
+        query: A JSON string containing:
+            - student_id: string
+            - reason: string
+            - start_date: string (YYYY-MM-DD)
+            - end_date: string (YYYY-MM-DD)
+    
+    Returns:
+        Success message if request is created, otherwise error message.
+    """
+    try:
+        # Parse JSON input
+        json_data = json.loads(query)
+        student_id = json_data.get('student_id')
+        reason = json_data.get('reason')
+        start_date = json_data.get('start_date')
+        end_date = json_data.get('end_date')
+
+        # Validate required fields
+        if not all([student_id, reason, start_date, end_date]):
+            return "Không thành công: Thiếu thông tin bắt buộc."
+
+        # Connect to database
+        conn = sqlite3.connect('database/my_database.db')
+        cursor = conn.cursor()
+
+        # Check if student exists
+        cursor.execute('SELECT student_id, name FROM students WHERE student_id = ?', (student_id,))
+        student = cursor.fetchone()
+        if not student:
+            conn.close()
+            return "Không thành công: Không tìm thấy sinh viên với MSSV này."
+
+        # Insert new leave request
+        cursor.execute('''
+            INSERT INTO student_leave_request (student_id, reason, start_date, end_date)
+            VALUES (?, ?, ?, ?)
+        ''', (student_id, reason, start_date, end_date))
+
+        conn.commit()
+        conn.close()
+        return f"Tạo đơn xin nghỉ thành công cho sinh viên {student[1]} ({student_id})"
+
+    except json.JSONDecodeError:
+        return "Không thành công: Dữ liệu không đúng định dạng JSON."
+    except sqlite3.Error as e:
+        return f"Không thành công: Lỗi database - {str(e)}"
+    except Exception as e:
+        return f"Không thành công: {str(e)}"
+
+@tool
+def manage_leave_request(query: str) -> str:
+    """
+    Use this tool to manage existing leave requests (view/update/delete).
+    
+    Args:
+        query: A JSON string containing:
+            - action: string ("view", "update", or "delete")
+            - student_id: string
+            - leave_id: integer (required for update/delete)
+            - updates: dictionary (required for update) containing:
+                - reason: string (optional)
+                - start_date: string (optional)
+                - end_date: string (optional)
+    
+    Returns:
+        View: JSON string with leave request details
+        Update/Delete: Success or error message
+    """
+    try:
+        # Parse JSON input
+        json_data = json.loads(query)
+        action = json_data.get('action')
+        student_id = json_data.get('student_id')
+
+        if not action or not student_id:
+            return "Không thành công: Thiếu action hoặc student_id"
+
+        # Connect to database
+        conn = sqlite3.connect('database/my_database.db')
+        cursor = conn.cursor()
+
+        # Check if student exists
+        cursor.execute('SELECT student_id, name FROM students WHERE student_id = ?', (student_id,))
+        student = cursor.fetchone()
+        if not student:
+            conn.close()
+            return "Không thành công: Không tìm thấy sinh viên với MSSV này."
+
+        # Process based on action
+        if action == "view":
+            cursor.execute('''
+                SELECT 
+                    s.student_id,
+                    s.name,
+                    s.class,
+                    lr.leave_id,
+                    lr.reason,
+                    lr.start_date,
+                    lr.end_date
+                FROM students s
+                LEFT JOIN student_leave_request lr ON s.student_id = lr.student_id
+                WHERE s.student_id = ?
+                ORDER BY lr.start_date DESC
+            ''', (student_id,))
+            
+            results = cursor.fetchall()
+            if not results:
+                conn.close()
+                return "Không tìm thấy thông tin xin nghỉ nào"
+
+            # Format kết quả
+            leave_requests = []
+            for row in results:
+                if row[3]:  # Nếu có leave_id
+                    leave_requests.append({
+                        "student_info": {
+                            "student_id": row[0],
+                            "name": row[1],
+                            "class": row[2]
+                        },
+                        "leave_info": {
+                            "leave_id": row[3],
+                            "reason": row[4],
+                            "start_date": row[5],
+                            "end_date": row[6]
+                        }
+                    })
+
+            conn.close()
+            return json.dumps(leave_requests, ensure_ascii=False, indent=2)
+
+        elif action == "update":
+            leave_id = json_data.get('leave_id')
+            updates = json_data.get('updates')
+
+            if not leave_id or not updates:
+                conn.close()
+                return "Không thành công: Thiếu leave_id hoặc thông tin cập nhật"
+
+            # Verify ownership
+            cursor.execute('''
+                SELECT student_id FROM student_leave_request 
+                WHERE leave_id = ? AND student_id = ?
+            ''', (leave_id, student_id))
+
+            if not cursor.fetchone():
+                conn.close()
+                return "Không thành công: Không tìm thấy đơn xin nghỉ hoặc không có quyền chỉnh sửa"
+
+            # Build dynamic UPDATE query
+            update_fields = []
+            update_values = []
+
+            if 'reason' in updates:
+                update_fields.append('reason = ?')
+                update_values.append(updates['reason'])
+            if 'start_date' in updates:
+                update_fields.append('start_date = ?')
+                update_values.append(updates['start_date'])
+            if 'end_date' in updates:
+                update_fields.append('end_date = ?')
+                update_values.append(updates['end_date'])
+
+            if not update_fields:
+                conn.close()
+                return "Không thành công: Không có thông tin cần cập nhật"
+
+            # Execute update
+            update_query = f'''
+                UPDATE student_leave_request 
+                SET {', '.join(update_fields)}
+                WHERE leave_id = ? AND student_id = ?
+            '''
+            update_values.extend([leave_id, student_id])
+
+            cursor.execute(update_query, update_values)
+            conn.commit()
+            conn.close()
+            return "Cập nhật đơn xin nghỉ thành công"
+
+        elif action == "delete":
+            leave_id = json_data.get('leave_id')
+
+            if not leave_id:
+                conn.close()
+                return "Không thành công: Thiếu leave_id"
+
+            # Delete request
+            cursor.execute('''
+                DELETE FROM student_leave_request 
+                WHERE leave_id = ? AND student_id = ?
+            ''', (leave_id, student_id))
+
+            if cursor.rowcount == 0:
+                conn.close()
+                return "Không thành công: Không tìm thấy đơn xin nghỉ hoặc không có quyền xóa"
+
+            conn.commit()
+            conn.close()
+            return "Xóa đơn xin nghỉ thành công"
+
+        else:
+            conn.close()
+            return "Không thành công: Action không hợp lệ (phải là 'view', 'update' hoặc 'delete')"
+
+    except json.JSONDecodeError:
+        return "Không thành công: Dữ liệu không đúng định dạng JSON"
+    except sqlite3.Error as e:
+        return f"Không thành công: Lỗi database - {str(e)}"
+    except Exception as e:
+        return f"Không thành công: {str(e)}"

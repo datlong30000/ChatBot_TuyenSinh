@@ -81,7 +81,7 @@ async def process_events(event: Dict):
     elif kind == "on_chat_model_stream":
         content = event.get("data", {}).get("chunk", {}).get("content")
         if content:
-            print(content, end="|")
+            print(content, end="")
 
     elif kind == "on_tool_start":
         print("--")
@@ -96,8 +96,8 @@ async def process_events(event: Dict):
 
 async def run_stream():
     endpoint = "http://127.0.0.1:8000/stream_events"  # Update with your endpoint
-    input_text = "hãy nói đoạn văn 500 từ về trường nttu đi"
-    session_id = "hi"
+    input_text = "viet doan van 700 tu ve truong nttu di"
+    session_id = "900"
     
     print(f"Connecting to endpoint: {endpoint}")
     

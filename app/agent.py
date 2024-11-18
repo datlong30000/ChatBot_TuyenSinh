@@ -40,7 +40,7 @@ llm = AzureChatOpenAI(openai_api_type="azure",
 # Khởi tạo tool
 tools = [tavily_search_web, de_an_tools, diem_trung_tuyen_tools, hoc_phi_nganh_tools, nang_khieu_tools,
          pt_hoc_ba_tools, pt_nang_luc_tools, pt_uu_tien_tools, nganh_hoc_tools, 
-           tinh_hinh_viec_lam_tools, thoi_gian_het_han_tools,thoi_gian_hien_tai, xin_nghi_tools]
+           tinh_hinh_viec_lam_tools, thoi_gian_het_han_tools,thoi_gian_hien_tai, xin_nghi_tools, manage_leave_request]
 
 
 # Kết hợp LLM với tools
