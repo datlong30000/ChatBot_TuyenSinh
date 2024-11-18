@@ -7,9 +7,9 @@ from langchain.agents.output_parsers import ToolsAgentOutputParser
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
 from langchain_core.utils.function_calling import convert_to_openai_tool
 from langchain_openai import ChatOpenAI
-# from langchain_anthropic import ChatAnthropic
-# from app.anthropic_parseranthropic_parser import AnthropicToolsAgentOutputParser
-# from langchain_anthropic.chat_models import convert_to_anthropic_tool
+from langchain_anthropic import ChatAnthropic
+from app.anthropic_parser import AnthropicToolsAgentOutputParser
+from langchain_anthropic.chat_models import convert_to_anthropic_tool
 from pydantic import BaseModel, Field
 from typing import Any
 from dotenv import load_dotenv
@@ -56,7 +56,7 @@ agent = (
     }
     | prompt
     | llm_with_tools
-    | OpenAIToolsAgentOutputParser()
+    | AnthropicToolsAgentOutputParser()
 )
 
 # agent = create_tool_calling_agent(llm_with_tools, tools, prompt=prompt)
