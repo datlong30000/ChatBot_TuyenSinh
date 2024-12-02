@@ -213,63 +213,6 @@ def thoi_gian_het_han_tools(query: str) -> list:
     return combined_info
 
 @tool
-def xin_nghi_tools(query: str) -> str:
-    """
-    Use this tool to help student make a form for leave request.
-    
-    Args:
-        query: A JSON string containing student ID, reason, start_date, end_date.
-    
-    Returns:
-        A success message if the query is added to the SQL database, otherwise it will return errors.
-    """
-    try:
-        # Chuyển đổi chuỗi JSON thành đối tượng Python
-        json_data = json.loads(query)
-        student_id = json_data.get('student_id')
-        reason = json_data.get('reason')
-        start_date = json_data.get('start_date')
-        end_date = json_data.get('end_date')
-
-        # Kiểm tra xem tất cả thông tin cần thiết đã được cung cấp chưa
-        if student_id is None or reason is None or start_date is None or end_date is None:
-            return "Không thành công: Thiếu thông tin cần thiết."
-
-        # Kết nối tới cơ sở dữ liệu SQLite
-        conn = sqlite3.connect('database/my_database.db')
-        cursor = conn.cursor()
-
-        # Kiểm tra xem MSSV có tồn tại trong bảng students hay không
-        cursor.execute('''
-            SELECT student_id FROM students WHERE student_id = ?
-        ''', (student_id,))
-        result = cursor.fetchone()
-
-        # Nếu MSSV không tồn tại, trả về thông báo lỗi
-        if result is None:
-            conn.close()  # Đóng kết nối trước khi trả về
-            return "Không thành công: MSSV bạn cung cấp không có trong cơ sở dữ liệu, bạn thử kiểm tra lại."
-
-        # Thực hiện truy vấn INSERT vào bảng leave_requests
-        cursor.execute(''' 
-            INSERT INTO student_leave_request (student_id, start_date, end_date, reason) 
-            VALUES (?, ?, ?, ?) 
-        ''', (student_id, start_date, end_date, reason))
-
-        # Lưu thay đổi
-        conn.commit()
-        conn.close()
-
-        return "Cập nhật thành công"
-
-    except json.JSONDecodeError:
-        return "Không thành công: Query không phải là định dạng JSON hợp lệ."
-    except sqlite3.Error as e:
-        return f"Không thành công: Lỗi cơ sở dữ liệu - {str(e)}"
-    except Exception as e:
-        return f"Không thành công: Đã xảy ra lỗi - {str(e)}"
-
-@tool
 # Tool tạo đơn xin nghỉ mới
 def xin_nghi_tools(query: str) -> str:
     """
@@ -333,8 +276,8 @@ def manage_leave_request(query: str) -> str:
     Args:
         query: A JSON string containing:
             - action: string ("view", "update", or "delete")
-            - student_id: string
-            - leave_id: integer (required for update/delete)
+            - student_id: string (required)
+            - leave_id: integer (required for view/update/delete)
             - updates: dictionary (required for update) containing:
                 - reason: string (optional)
                 - start_date: string (optional)
@@ -349,6 +292,7 @@ def manage_leave_request(query: str) -> str:
         json_data = json.loads(query)
         action = json_data.get('action')
         student_id = json_data.get('student_id')
+        leave_id = json_data.get('leave_id')
 
         if not action or not student_id:
             return "Không thành công: Thiếu action hoặc student_id"
@@ -366,6 +310,11 @@ def manage_leave_request(query: str) -> str:
 
         # Process based on action
         if action == "view":
+            # Kiểm tra xem có leave_id được cung cấp không
+            if not leave_id:
+                conn.close()
+                return "Không thành công: Thiếu leave_id để xem thông tin chi tiết"
+
             cursor.execute('''
                 SELECT 
                     s.student_id,
@@ -376,44 +325,42 @@ def manage_leave_request(query: str) -> str:
                     lr.start_date,
                     lr.end_date
                 FROM students s
-                LEFT JOIN student_leave_request lr ON s.student_id = lr.student_id
-                WHERE s.student_id = ?
-                ORDER BY lr.start_date DESC
-            ''', (student_id,))
+                INNER JOIN student_leave_request lr ON s.student_id = lr.student_id
+                WHERE s.student_id = ? AND lr.leave_id = ?
+            ''', (student_id, leave_id))
             
-            results = cursor.fetchall()
-            if not results:
+            result = cursor.fetchone()
+            if not result:
                 conn.close()
-                return "Không tìm thấy thông tin xin nghỉ nào"
+                return "Không tìm thấy thông tin xin nghỉ với leave_id và student_id đã cung cấp"
 
             # Format kết quả
-            leave_requests = []
-            for row in results:
-                if row[3]:  # Nếu có leave_id
-                    leave_requests.append({
-                        "student_info": {
-                            "student_id": row[0],
-                            "name": row[1],
-                            "class": row[2]
-                        },
-                        "leave_info": {
-                            "leave_id": row[3],
-                            "reason": row[4],
-                            "start_date": row[5],
-                            "end_date": row[6]
-                        }
-                    })
+            leave_request = {
+                "student_info": {
+                    "student_id": result[0],
+                    "name": result[1],
+                    "class": result[2]
+                },
+                "leave_info": {
+                    "leave_id": result[3],
+                    "reason": result[4],
+                    "start_date": result[5],
+                    "end_date": result[6]
+                }
+            }
 
             conn.close()
-            return json.dumps(leave_requests, ensure_ascii=False, indent=2)
+            return json.dumps(leave_request, ensure_ascii=False, indent=2)
 
         elif action == "update":
-            leave_id = json_data.get('leave_id')
-            updates = json_data.get('updates')
-
-            if not leave_id or not updates:
+            if not leave_id:
                 conn.close()
-                return "Không thành công: Thiếu leave_id hoặc thông tin cập nhật"
+                return "Không thành công: Thiếu leave_id"
+                
+            updates = json_data.get('updates')
+            if not updates:
+                conn.close()
+                return "Không thành công: Thiếu thông tin cập nhật"
 
             # Verify ownership
             cursor.execute('''
@@ -423,7 +370,7 @@ def manage_leave_request(query: str) -> str:
 
             if not cursor.fetchone():
                 conn.close()
-                return "Không thành công: Không tìm thấy đơn xin nghỉ hoặc không có quyền chỉnh sửa"
+                return "Không thành công: Không tìm thấy đơn xin nghỉ với leave_id và student_id đã cung cấp"
 
             # Build dynamic UPDATE query
             update_fields = []
@@ -457,8 +404,6 @@ def manage_leave_request(query: str) -> str:
             return "Cập nhật đơn xin nghỉ thành công"
 
         elif action == "delete":
-            leave_id = json_data.get('leave_id')
-
             if not leave_id:
                 conn.close()
                 return "Không thành công: Thiếu leave_id"
