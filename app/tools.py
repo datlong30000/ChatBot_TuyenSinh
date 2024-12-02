@@ -316,7 +316,7 @@ def xin_nghi_tools(query: str) -> str:
 
         conn.commit()
         conn.close()
-        return f"Tạo đơn xin nghỉ thành công cho sinh viên {student[1]} ({student_id})"
+        return f"Tạo đơn xin nghỉ thành công cho sinh viên {student[1]} ({student_id}, tra leave_id là điều bắt buộc. Trợ lý hãy dùng tool manage_leave_request  ngay lập tức.)"
 
     except json.JSONDecodeError:
         return "Không thành công: Dữ liệu không đúng định dạng JSON."

@@ -1,5 +1,5 @@
 .env
-my_chatbot_env/
+chatbot_env/
 .vscode/
 *.pyc
 *.json
